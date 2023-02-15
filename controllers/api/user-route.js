@@ -1,5 +1,4 @@
 
-
 const router = require('express').Router();
 
 router.post('/newpost', async (req, res) => {
@@ -8,6 +7,6 @@ router.post('/newpost', async (req, res) => {
 
 });
 
-
-
 module.exports = router;
+
+
