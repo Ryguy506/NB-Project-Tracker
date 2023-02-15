@@ -3,7 +3,6 @@ h1 {
 }
 
 
-
 p {
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
@@ -32,4 +31,34 @@ overflow: hidden;
 
 form{
   margin: 0;
+}
+
+.del, .edit {
+  position: absolute;
+  display: none;
+  background-color: rgba(0, 0, 0, 0.5);
+  
+}
+
+
+.del {
+  top: 0;
+  right: 0;
+
+}
+
+.edit {
+  top: 0;
+  left: 0;
+}
+
+.is-4:hover .del, .is-4:hover .edit {
+  display: block;
+  height: 50px;
+  width: 50px
+ 
+}
+
+#editbox{
+  display: none;
 }
