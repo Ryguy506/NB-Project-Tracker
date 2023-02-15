@@ -10,7 +10,7 @@ router.get('/:name', (req, res) => {
 	const name = req.params.name;
 	User.findOne({ where: { github_id: name } })
 		.then(user => {
-			res.render('myprofile', { user });
+			res.render('publicprofile', { user });
 		})
 		.catch(error => {
 			console.error(error);
