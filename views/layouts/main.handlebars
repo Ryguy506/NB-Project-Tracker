@@ -19,17 +19,23 @@
   <a class="navbar-item" href="/">
         Home
       </a>
+      {{#if user}}
          <a class="navbar-item" href="/profile">
         My Profile
       </a>
-      <a class="navbar-item" href="https://github.com/login/oauth/authorize?client_id=6bed90201b9cbadbca77">
-        Login
-      </a>
-      {{!-- need to make an if statement around being logged in --}}
-      <a class="navbar-item" href="/newPost">
+            <a class="navbar-item" href="/newPost">
         New Post
       </a>
       {{!-- put this in myprofile in future, convenient for testing at the moment --}}
+      <a class="navbar-item" href="/logout">
+        Logout
+      </a>
+      {{else}}
+      <a class="navbar-item" href="https://github.com/login/oauth/authorize?client_id=6bed90201b9cbadbca77">
+        Login
+      </a>
+      {{/if}}
+
    
   </div>
   

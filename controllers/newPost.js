@@ -6,7 +6,16 @@ const router = require('express').Router();
 
 router.get('/', async (req, res) => {
   // Send the rendered Handlebars.js template back as the response
-  res.render('addpost');
+  // if res.session is not defined, redirect to login page
+  if (!req.session.user) {
+    res.redirect('/');
+    return;
+  }
+  // send user session data to the addpost page
+  res.render('addpost', {
+    token: req.session.token,
+    user: req.session.user,
+  });
 });
 
 module.exports = router;
