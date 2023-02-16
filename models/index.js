@@ -12,3 +12,4 @@ Project.belongsToMany(User, {
 });
 
 module.exports = { User, Project, Projecttouser };
+
