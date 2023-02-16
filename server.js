@@ -12,6 +12,12 @@ app.engine("handlebars", exphbs.engine());
 app.set("view engine", "handlebars");
 
 app.use(express.static("public"));
+app.use(session({
+  //grab the secret from the .env file
+  secret : "secret",
+  resave : false,
+  saveUninitialized : false
+}))
 //Setup routes to the Server
 //Look at /controllers folder
 app.use("/", routes);
@@ -25,11 +31,32 @@ sequelize.sync({force: false}).then(()=>{
 
 app.use(express.json());
 
-app.post('/getToken', async (req, res) => {
+
+app.get('/login', (req, res) => {
+  var queryString = req.url.split('?')[1];
+  var queryArray = queryString.split('&');
+  var code = null;
+  for (var i = 0; i < queryArray.length; i++) {
+    var pair = queryArray[i].split('=');
+    if (pair[0] == 'code') {
+      code = pair[1];
+      break;
+    }
+  }
+  console.log(code);
+  if (code) {
+    res.redirect('/getToken?code=' + code);
+  } else {
+    res.redirect('/');
+  }
+});
+
+app.get('/getToken', async (req, res) => {
   try {
-    const { code } = req.body;
+    const code = req.query.code;
     const response = await axios.post('https://github.com/login/oauth/access_token', {
       client_id: "6bed90201b9cbadbca77",
+      // grab the secret from the .env file later
       client_secret: "433469f2ad230adb74a9cd1f08538030e8aebd88",
       code
     }, {
@@ -37,13 +64,34 @@ app.post('/getToken', async (req, res) => {
         Accept: 'application/json'
       }
     });
-
-    res.send(response.data);
+    // store the token in the session
+    req.session.token = response.data.access_token;
+    res.redirect('/grabinfo?token=' + response.data.access_token);
   } catch (error) {
     console.error(error);
     res.status(500).send('Error while fetching access token');
   }
 });
+
+app.get('/grabinfo', async (req, res) => {
+  try {
+    const token = req.query.token;
+    const response = await axios.get('https://api.github.com/user', {
+      headers: {
+        Authorization: 'token ' + token
+      }
+    });
+    // all user info can be grabed from session now. .login for username, .avatar_url for avatar, etc.
+    req.session.user = response.data;
+    console.log(req.session.user.login);
+    res.redirect('/profile');
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error while fetching user info');
+  }
+});
+
+
 
 // app.listen(PORT, () => {
 //   console.log(`Server is listening at http://localhost:${PORT}`);
