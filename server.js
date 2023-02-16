@@ -7,6 +7,8 @@ const axios = require('axios');
 const sequelize = require('./config/connection');
 const app = express();
 const PORT = process.env.PORT || 3001;
+//const client_secret = process.env.CLIENT_SECRET;
+//const sessionSecret = process.env.SESSION_SECRET;
 
 app.engine("handlebars", exphbs.engine());
 app.set("view engine", "handlebars");
@@ -15,7 +17,7 @@ app.use(express.static("public"));
 app.use(session({
   //grab the secret from the .env file
   secret : "secret",
-  resave : false,
+  resave : true,
   saveUninitialized : false
 }))
 //Setup routes to the Server
