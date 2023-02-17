@@ -7,8 +7,8 @@ const axios = require('axios');
 const sequelize = require('./config/connection');
 const app = express();
 const PORT = process.env.PORT || 3001;
-//const client_secret = process.env.CLIENT_SECRET;
-//const sessionSecret = process.env.SESSION_SECRET;
+const client_secret = process.env.CLIENT_SECRET;
+const sessionSecret = process.env.SESSION_SECRET;
 
 app.engine("handlebars", exphbs.engine());
 app.set("view engine", "handlebars");
@@ -16,7 +16,7 @@ app.set("view engine", "handlebars");
 app.use(express.static("public"));
 app.use(session({
   //grab the secret from the .env file
-  secret : "secret",
+  secret : sessionSecret,
   resave : true,
   saveUninitialized : false
 }))
@@ -59,7 +59,7 @@ app.get('/getToken', async (req, res) => {
     const response = await axios.post('https://github.com/login/oauth/access_token', {
       client_id: "6bed90201b9cbadbca77",
       // grab the secret from the .env file later
-      client_secret: "433469f2ad230adb74a9cd1f08538030e8aebd88",
+      client_secret: client_secret,
       code
     }, {
       headers: {
