@@ -53,6 +53,11 @@ app.get('/login', (req, res) => {
   }
 });
 
+app.get('/logout', (req, res) => {
+  req.session.destroy();
+  res.redirect('/');
+})
+
 app.get('/getToken', async (req, res) => {
   try {
     const code = req.query.code;
