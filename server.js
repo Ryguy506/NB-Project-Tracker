@@ -3,6 +3,7 @@ const session = require("express-session");
 const exphbs = require("express-handlebars");
 const routes = require("./controllers");
 const axios = require('axios');
+const Handlebars = require('handlebars');
 //TODO: Uncomment to make use of database, once set up
 const sequelize = require('./config/connection');
 const app = express();
@@ -97,7 +98,11 @@ app.get('/grabinfo', async (req, res) => {
   }
 });
 
-
+Handlebars.registerHelper('githubUsername', function(url) {
+  const parts = url.split('/');
+  const username = parts[3];
+  return username;
+});
 
 // app.listen(PORT, () => {
 //   console.log(`Server is listening at http://localhost:${PORT}`);
