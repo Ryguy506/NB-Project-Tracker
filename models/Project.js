@@ -33,9 +33,9 @@ Project.init(
                allowNull: false,
           },
           data_created: {
-               type: DataTypes.DATE,
+               type: DataTypes.STRING,
                allowNull: false,
-               defaultValue: DataTypes.NOW,
+               
           },    
           email: {
                type: DataTypes.STRING,

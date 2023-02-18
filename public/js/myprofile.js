@@ -40,28 +40,34 @@ editBoxClose.addEventListener('click', function () {
 
   
 
-  function edit (id) {
+ async function edit (id) {
   
     console.log(id)
-      const title = document.querySelector('#title').value.trim();
-      const desc = document.querySelector('#desc').value
-      const skills = document.querySelector('#skills').value;
-      const email = document.querySelector('#email').value.trim();
-      const repo = document.querySelector('#repo').value.trim();
-  
+    const github_repo = document.querySelector('#repo').value.trim();
+    const title = document.querySelector('#title').value
+    const description  = document.querySelector('#desc').value
+    const skills = document.querySelector('#skills').value
+    const email = document.querySelector('#email').value.trim();
+
      if (title && desc && skills && email && repo) {
       const url = `api/user/edit/${id}`
-      fetch(url, {
+     const response = await fetch(url, {
         method: 'PUT',
-        body: JSON.stringify({ title, desc, skills, email, repo }),
+        body: JSON.stringify({ github_repo, title, description, email, skills }),
         headers: { 'Content-Type': 'application/json' },
-      }).then(function (response) {
-        window.location.href = `/profile`
       })
+
+      if (response.ok) {
+        alert("Post Updated!");
+        document.location.replace('/profile');
+      }
+      else {
+        alert(response.statusText);
+      }
   
     }
     else {
-      window.alert('Please fill out all fields')
+      alert('Please fill out all fields')
       return
     }
     
@@ -72,19 +78,26 @@ editBoxClose.addEventListener('click', function () {
 
 
 deleteBtn.forEach(function (button) {
-    button.addEventListener('click', function (event) {
+    button.addEventListener('click', async function (event) {
       const ancestor = event.target.closest('[data-id-project]');
       const id = ancestor.dataset.idProject;
       console.log(id)
       const url = `api/user/delete/${id}`
-      fetch(url, {
+     const response = await fetch(url, {
         method: 'DELETE'
-      }).then(function (response) {
-        window.location.href = '/profile'
-
       })
 
+      if (response.ok) {
+        alert("Post Deleted!");
+        document.location.replace('/profile');
+      }
+      else {
+        alert(response.statusText);
+      }
+
+
     })
+  
   })
 
 
