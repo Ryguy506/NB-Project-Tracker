@@ -2,49 +2,43 @@ h1 {
   font-size: medium;
 }
 
-
 p {
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
-.navbar { 
-display: flex;
-justify-content: center;
-
+.navbar {
+  display: flex;
+  justify-content: center;
 }
 
 .navbar-item {
- padding-left: 3vw;
- padding-right: 3vw;
+  padding-left: 3vw;
+  padding-right: 3vw;
 }
 
 .profile-pic {
   border-radius: 50%;
 }
 
-
-
 .media {
   height: 200px;
-overflow: hidden;
+  overflow: hidden;
 }
 
-form{
+form {
   margin: 0;
 }
 
-.del, .edit {
+.del,
+.edit {
   position: absolute;
   display: none;
   background-color: rgba(0, 0, 0, 0.5);
-  
 }
-
 
 .del {
   top: 0;
   right: 0;
-
 }
 
 .edit {
@@ -60,13 +54,56 @@ form{
   background-color: green;
 }
 
-.is-4:hover .del, .is-4:hover .edit {
+.is-4:hover .del,
+.is-4:hover .edit {
   display: block;
   height: 50px;
-  width: 50px
- 
+  width: 50px;
 }
 
-#editbox{
+#editbox {
   display: none;
+}
+
+@media screen and (max-width: 1025px) {
+  .project {
+    display: flex;
+		flex-direction: column;
+  }
+	.project__descr {
+		text-align: center;
+	}
+	.myprofile_container{
+		flex-direction: column;
+		align-items: center;
+	}
+}
+@media screen and (max-width: 769px) {
+  .navbar-brand {
+		font-size: large;
+  }
+	.subtitle {
+		font-size: large;
+	}
+	.content p .title{
+		font-size: x-large;
+	}
+	.card_container{
+		flex-direction: column;
+		align-items: center;
+	}
+}
+@media screen and (max-width: 426px) {
+  .subtitle {
+		display: none;
+	}
+	.navbar-brand {
+		font-size: medium;
+  }
+	a svg {
+		display: none;
+	}
+	.button {
+		font-size: 1.25rem;
+	}
 }
