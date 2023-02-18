@@ -9,7 +9,8 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 const client_secret = process.env.CLIENT_SECRET;
 const sessionSecret = process.env.SESSION_SECRET;
-
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.engine("handlebars", exphbs.engine());
 app.set("view engine", "handlebars");
 
@@ -30,8 +31,6 @@ sequelize.sync({force: false}).then(()=>{
         console.log(`Server is listening at http://localhost:${PORT}`)
     });
 });
-
-app.use(express.json());
 
 
 app.get('/login', (req, res) => {

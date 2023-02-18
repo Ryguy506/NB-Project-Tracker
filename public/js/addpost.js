@@ -10,32 +10,33 @@ const newPostHandler = async (event) => {
     const dateString = date.toDateString();
     const splitDate = dateString.split(' ');
     const formattedDate = splitDate.slice(1).join(' ');
-    const time = `${formattedDate} ${hour}`;
+    const data_created = `${formattedDate} ${hour}`;
 
 
-    const repo = document.querySelector('#repo').value.trim();
-    const title = document.querySelector('#title').value.trim();
-    const desc = document.querySelector('#desc').value.trim();
-    const skills = document.querySelector('#skills').value.trim();
+    const github_repo = document.querySelector('#repo').value.trim();
+    const title = document.querySelector('#title').value
+    const description  = document.querySelector('#desc').value
+    const skills = document.querySelector('#skills').value
     const email = document.querySelector('#email').value.trim();
 
-    if (repo && title && desc && skills && email) {
-        {
-            console.log(repo, title, desc, email, skills, time);
+    if (github_repo && title && description && skills && email) {
+        
+            console.log(github_repo, title, description, email, skills, data_created);
             const response = await fetch(`/api/user/newpost`, {
                 method: 'POST',
-                body: JSON.stringify({ repo, title, desc, skills, time }),
+                body: JSON.stringify({ github_repo, title, description, email, skills, data_created}),
                 headers: { 'Content-Type': 'application/json' },
             });
 
             if (response.ok) {
-                // document.location.replace('/');
+                document.location.replace('/profile');
                 alert("Post Created!");
             } else {
                 alert(response.statusText);
             }
-
-        }
+    }
+    else {
+        alert('Please fill out all fields')
     }
 };
 

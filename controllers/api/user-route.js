@@ -2,39 +2,68 @@
 const router = require('express').Router();
 const { User, Project } = require('../../models');
 
-router.post('/newpost', (req, res) => {
-	Project.create({ 
-		 title: "newProject", 
-		 description: "blah blah blah", 
-		 github_repo: "github_repo_newProject", 
-		 skills: "skills for new Project", 
-		 email: "blahemail@jj.com" })
-	.then(data=> res.render('addpost', {data}))
+router.post('/newpost', async (req, res) => {
+	console.log(req.body);
+	try {
+		const newProject = await Project.create({
+			title: req.body.title,
+			description: req.body.description,
+			github_repo: req.body.github_repo,
+			skills: req.body.skills,
+			email: req.body.email,
+			data_created: req.body.data_created
+		});
+		res.status(200).json(newProject);
+	} catch (err) {
+		res.status(400).json(err);
+	}
 });
 
-router.put('/edit/:id', (req, res) => {
-	console.log(req.params.id)
-	Project.update({
-		 title: 'newTitleAfterUpdate',
-		 description: 'newDescriptionAfterUpdate'
-		 }, {
-		 where: { id_project: req.params.id }})
-		 .then(dbPostData => {
-			  if (!dbPostData) {
-				   res.status(404).json({ message: 'No post found with this id' });
-				   return;
-			  }
-	   // serialize the data
-		 // const project = dbPostData.get({ plain: true });
-		 // console.log(project);
-		 res.render('editablepost', 
-			  // logged_in: true
-)})
-	.catch(err => {
-		 console.log(err);
-		 res.status(500).json(err);
+router.put('/edit/:id', async (req, res) => {
+try {
+	const projectUpdate = await Project.update(
+		{
+			title: req.body.title,
+			description: req.body.description,
+			github_repo: req.body.github_repo,
+			skills: req.body.skills,
+			email: req.body.email,
+			data_created: req.body.data_created
+		},
+		{
+			where: {
+				id_project: req.params.id
+			}
+		}
+	);
+	if (!projectUpdate) {
+		res.status(404).json({ message: 'No post found with this id' });
+		return;
+	}
+	res.status(200).json(projectUpdate);
+}catch (err) {
+	res.status(500).json(err);
+}
+})
+
+router.delete('/delete/:id', async (req, res) => {
+try {
+	const projectDelete = await Project.destroy({
+		where: {
+			id_project: req.params.id
+		}
 	});
+	if (!projectDelete) {
+		res.status(404).json({ message: 'No post found with this id' });
+		return;
+	}
+	res.status(200).json(projectDelete);
+} catch (err) {
+	res.status(500).json(err);
+}
 });
+
+
 
 router.get('/:name', async (req, res) => {
 	const name = req.params.name;
