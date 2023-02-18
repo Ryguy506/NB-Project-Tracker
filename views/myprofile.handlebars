@@ -1,119 +1,120 @@
-<section class="hero has-background-info is-medium">
-     <div class="hero-body">
-            <h1 class="title is-1 has-text-centered">
-                My Profile
-            </h1>
-            <h2 class="subtitle has-text-centered">
-                View and manage your profile
-            </h2>
-            </div>
+<section class="has-background-info is-medium">
+	<div class="hero-body">
+		<h1 class="title is-1 has-text-centered">
+			My Profile
+		</h1>
+		<h2 class="subtitle has-text-centered">
+			View and manage your profile
+		</h2>
+	</div>
 
-        <div>
-  
-           
-          
-      
+	<div>
 
-</section>
-
-                    <div class="card m-3">
-                        <div class="card-content">
-                            <div class="media">
-                                <div class="media-left">
-                                    <img src="{{user.avatar_url}}" alt="profile url">
-                                    {{!-- needs to have size fixed --}}
-                                     </div>
-                                <div class="media-content">
-                                    <p class="title is-4"> Welcome {{user.login}}! </p>
-                                    <p class="subtitle is-6"></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-            
-
-           <section class="hero has-background-info is-medium">
-     <div class="hero-body">
-            <h1 class="title is-1 has-text-centered">
-                My Posts
-            </h1>
-            <h2 class="subtitle has-text-centered">
-                View and manage your posts
-            </h2>
-            </div>
-
-        <div>
 
 
 
 
 </section>
 
-<section class="columns is-multiline m-3">
-    {{#each posts as |project|}}
-    {{>editablepost}}
-    {{/each}}
+<div class="card m-3">
+	<div class="card-content">
+		<div class="block is-flex">
+			<div class="image is-128x128">
+				<img src="{{user.avatar_url}}" alt="profile url">
+				{{!-- needs to have size fixed --}}
+			</div>
+			<div class="block ml-4">
+				<p class="title is-4"> Welcome {{user.login}}! </p>
+				<p class="subtitle is-6"></p>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+
+<section class="has-background-info is-medium">
+	<div class="hero-body">
+		<h1 class="title is-1 has-text-centered">
+			My Posts
+		</h1>
+		<h2 class="subtitle has-text-centered">
+			View and manage your posts
+		</h2>
+	</div>
+
+	<div>
+
+
+
+
+</section>
+
+<section class="columns px-5 is-flex is-flex-direction-column m-3">
+	{{#each posts as |project|}}
+	{{>editablepost}}
+	{{/each}}
 
 
 
 </section>
 
 
-    <section class="columns" id="editbox"> 
-        <div class="column is-5">  {{!-- <main class=" hero is-fullheight is-justify-content-center" id="editbox"> --}}
-<div class="card box m-3">
-<div class="is-flex is-justify-content-right">
-<button class="button" id="closeBtn">X</button>
-</div>
-<p class="title has-text-centered">Edit Post</p>
+<section class="columns" id="editbox">
+	<div class="column is-5"> {{!-- <main class=" hero is-fullheight is-justify-content-center" id="editbox"> --}}
+			<div class="card box m-3">
+				<div class="is-flex is-justify-content-right">
+					<button class="button" id="closeBtn">X</button>
+				</div>
+				<p class="title has-text-centered">Edit Post</p>
 
 
 
- <div class="field">
-    <label class="label">Title</label>
-    <div class="control">
-      <input class="input" id="title" type="text" placeholder="Awesome Project...">
-    </div>
-  </div>
+				<div class="field">
+					<label class="label">Title</label>
+					<div class="control">
+						<input class="input" id="title" type="text" placeholder="Awesome Project...">
+					</div>
+				</div>
 
-  <div class="field">
-    <label class="label">Description</label>
-    <div class="control">
-      <textarea class="textarea" id="desc" placeholder="..." style="resize: none;"></textarea>
-    </div>
-  </div>
-
-
-<div class="field">
-    <label class="label">Skills</label>
-    <div class="control">
-      <textarea class="textarea" id="skills" placeholder="..." style="resize: none;"></textarea>
-    </div>
-  </div>
+				<div class="field">
+					<label class="label">Description</label>
+					<div class="control">
+						<textarea class="textarea" id="desc" placeholder="..." style="resize: none;"></textarea>
+					</div>
+				</div>
 
 
-  <div class="field">
-    <label class="label">Contact Email</label>
-    <div class="control">
-      <input class="input" id="email" type="text" placeholder="@gmail.com">
-    </div>
-  </div>
-
-  <div class="field">
-    <label class="label">Repo Link</label>
-    <div class="control">
-      <input class="input" id="repo" type="text" placeholder="https://github.com/">
-    </div>
-  </div>
+				<div class="field">
+					<label class="label">Skills</label>
+					<div class="control">
+						<textarea class="textarea" id="skills" placeholder="..." style="resize: none;"></textarea>
+					</div>
+				</div>
 
 
-  <div class="field">
-    <div class="control has-text-right">
-      <button class="button is-link is-medium" id="saveBtn">Save</button>
-    </div>
-  </div>
-</div>
-</div>
+				<div class="field">
+					<label class="label">Contact Email</label>
+					<div class="control">
+						<input class="input" id="email" type="text" placeholder="@gmail.com">
+					</div>
+				</div>
+
+				<div class="field">
+					<label class="label">Repo Link</label>
+					<div class="control">
+						<input class="input" id="repo" type="text" placeholder="https://github.com/">
+					</div>
+				</div>
+
+
+				<div class="field">
+					<div class="control has-text-right">
+						<button class="button is-link is-medium" id="saveBtn">Save</button>
+					</div>
+				</div>
+			</div>
+	</div>
 </section>
 </main>
 
