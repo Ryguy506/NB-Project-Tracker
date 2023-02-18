@@ -6,21 +6,19 @@
 	{{#if user}}
 	<hr>
 	{{/if}}
-	{{#unless user}}
 
+		{{#unless user}}
 <div class="hero-body">
     <div class="container">
       <div class="project columns">
         <div class="project__descr column p-0 m-6">
-      
-			<h1 class="title is-1 has-text-white">
+      <h1 class="title is-1 has-text-white">
         Project Tracker
       </h1>
       <h2 class="subtitle mt-1  has-text-white">
         Do you want to be part of a community that supports innovative ideas and local initiatives? Look no further than the New Brunswick Project Tracker. <br>The New Brunswick Project Tracker is a platform that connects project creators. Whether you're interested in funding a new tech startup, a sustainable agriculture project, or an innovative arts initiative, the New Brunswick Project Tracker has something for everyone.
       </h2>
   </div>
-
 
   <div class="column p-0 m-6 is-flex is-justify-content-center is-align-items-center">
    
@@ -37,7 +35,7 @@
 Recent Posts
 </p>
 </section>
-<section class="columns is-multiline m-3">
+
 {{#each projects as |project|}}
 {{>post}}
 {{/each}}
