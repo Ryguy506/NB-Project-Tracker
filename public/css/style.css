@@ -15,17 +15,17 @@ p {
   padding-left: 3vw;
   padding-right: 3vw;
 }
-hr{
+/* hr{
 	
-}
+} */
 .profile-pic {
   border-radius: 50%;
 }
 
-.media {
-  /* height: 200px;
-  overflow: hidden; */
-}
+/* .media { 
+   height: 200px;
+  overflow: hidden; 
+ } */
 
 form {
   margin: 0;
