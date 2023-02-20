@@ -1,4 +1,4 @@
-
+const validRepoUrl = /^https?:\/\/github\.com\/[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/;
 
 const postAdded = document.querySelector('#postAdded');
 
@@ -21,7 +21,7 @@ const newPostHandler = async (event) => {
     const skills = document.querySelector('#skills').value
     const email = document.querySelector('#email').value.trim();
 
-    if (github_repo && title && description && skills && email) {
+    if (github_repo && validRepoUrl.test(github_repo) && title && description && skills && email) {
         
             console.log(github_repo, title, description, email, skills, data_created);
             const response = await fetch(`/api/user/newpost`, {

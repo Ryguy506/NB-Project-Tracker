@@ -1,4 +1,4 @@
-
+const validRepoUrl = /^https?:\/\/github\.com\/[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/;
 
   const editBtn = document.querySelectorAll('.edit');
   const editBox = document.querySelector('#editbox');
@@ -66,7 +66,7 @@ editBoxClose.addEventListener('click', function () {
     const skills = document.querySelector('#skills').value
     const email = document.querySelector('#email').value.trim();
 
-     if (title && desc && skills && email && repo) {
+     if (title && desc && skills && email && repo && validRepoUrl.test(github_repo)) {
       const url = `api/user/edit/${id}`
      const response = await fetch(url, {
         method: 'PUT',
