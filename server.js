@@ -9,6 +9,7 @@ const sequelize = require('./config/connection');
 const app = express();
 const PORT = process.env.PORT || 3001;
 const client_secret = process.env.CLIENT_SECRET;
+const client_id = process.env.CLIENT_ID;
 const sessionSecret = process.env.SESSION_SECRET;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -26,7 +27,6 @@ app.use(session({
 //Look at /controllers folder
 app.use("/", routes);
 
-//TODO: Uncomment to make use of database, once set up
 sequelize.sync({force: false}).then(()=>{
     app.listen(PORT, () => {
         console.log(`Server is listening at http://localhost:${PORT}`)
@@ -62,7 +62,7 @@ app.get('/getToken', async (req, res) => {
   try {
     const code = req.query.code;
     const response = await axios.post('https://github.com/login/oauth/access_token', {
-      client_id: "6bed90201b9cbadbca77",
+      client_id: client_id,
       // grab the secret from the .env file later
       client_secret: client_secret,
       code
@@ -98,6 +98,7 @@ app.get('/grabinfo', async (req, res) => {
   }
 });
 
+// these helpers are used to display the github username and avatar of the owner of the github repository
 Handlebars.registerHelper('githubUsername', function(url) {
   const parts = url.split('/');
   const username = parts[3];
