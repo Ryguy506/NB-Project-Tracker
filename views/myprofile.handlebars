@@ -8,7 +8,7 @@
 		</h2>
 	</div>
 
-	<div> 
+	<div>
 
 
 
@@ -49,72 +49,102 @@
 
 </section>
 
-<section class="columns px-5 is-flex is-flex-direction-column m-3">
+{{!-- <section class="columns px-5 is-flex is-flex-direction-column m-3"> --}}
 	{{#each posts as |project|}}
 	{{>editablepost}}
 	{{/each}}
 
 
 
-</section>
+	{{!-- </section> --}}
 
 
 <section class="columns" id="editbox">
-	<div class="column is-5"> {{!-- <main class=" hero is-fullheight is-justify-content-center" id="editbox"> --}}
-			<div class="card box m-3">
-				<div class="is-flex is-justify-content-right">
-					<button class="button" id="closeBtn">X</button>
-				</div>
-				<p class="title has-text-centered">Edit Post</p>
+	<div class="column  is-5">
+		<div class="card box m-3">
+			<div class="is-flex is-justify-content-right">
+				<button class="button" id="closeBtn">X</button>
+			</div>
+			<p class="title has-text-centered">Edit Post</p>
 
 
 
-				<div class="field">
-					<label class="label">Title</label>
-					<div class="control">
-						<input class="input" id="title" type="text" placeholder="Awesome Project...">
-					</div>
-				</div>
-
-				<div class="field">
-					<label class="label">Description</label>
-					<div class="control">
-						<textarea class="textarea" id="desc" placeholder="..." style="resize: none;"></textarea>
-					</div>
-				</div>
-
-
-				<div class="field">
-					<label class="label">Skills</label>
-					<div class="control">
-						<textarea class="textarea" id="skills" placeholder="..." style="resize: none;"></textarea>
-					</div>
-				</div>
-
-
-				<div class="field">
-					<label class="label">Contact Email</label>
-					<div class="control">
-						<input class="input" id="email" type="text" placeholder="@gmail.com">
-					</div>
-				</div>
-
-				<div class="field">
-					<label class="label">Repo Link</label>
-					<div class="control">
-						<input class="input" id="repo" type="text" placeholder="https://github.com/">
-					</div>
-				</div>
-
-
-				<div class="field">
-					<div class="control has-text-right">
-						<button class="button is-link is-medium" id="saveBtn">Save</button>
-					</div>
+			<div class="field">
+				<label class="label">Title</label>
+				<div class="control">
+					<input class="input" id="title" type="text" placeholder="Awesome Project...">
 				</div>
 			</div>
+
+			<div class="field">
+				<label class="label">Description</label>
+				<div class="control">
+					<textarea class="textarea" id="desc" placeholder="..." style="resize: none;"></textarea>
+				</div>
+			</div>
+
+
+			<div class="field">
+				<label class="label">Skills</label>
+				<div class="control">
+					<textarea class="textarea" id="skills" placeholder="..." style="resize: none;"></textarea>
+				</div>
+			</div>
+
+
+			<div class="field">
+				<label class="label">Contact Email</label>
+				<div class="control">
+					<input class="input" id="email" type="text" placeholder="@gmail.com">
+				</div>
+			</div>
+
+			<div class="field">
+				<label class="label">Repo Link</label>
+				<div class="control">
+					<input class="input" id="repo" type="text" placeholder="https://github.com/">
+				</div>
+			</div>
+
+
+			<div class="field">
+				<div class="control has-text-right">
+					<button class="button is-link is-medium" id="saveBtn">Save</button>
+				</div>
+			</div>
+		</div>
 	</div>
 </section>
-</main>
+
+<section class="columns" id="postUpdated">
+	<div class="column is-4">
+		<div class="card has-background-info">
+			<p class="title has-text-centered p-5">Post Updated!</p>
+		</div>
+	</div>
+</section>
+
+<section class="columns" id="ynDelete">
+	<div class="column is-4">
+		<div class="card">
+			<p class="title has-text-centered p-5">Are you sure?</p>
+			<div class="field is-grouped is-grouped-centered">
+				<div class="control">
+					<button class="button is-link mb-1" id="yesBtn">Yes</button>
+				</div>
+				<div class="control">
+					<button class="button is-link mb-1" id="noBtn">No</button>
+				</div>
+		</div>
+	</div>
+</section>
+
+<section class="columns" id="postDeleted">
+	<div class="column is-4">
+		<div class="card has-background-info">
+			<p class="title has-text-centered p-5">Post Deleted!</p>
+		</div>
+	</div>
+</section>
 
 <script src="/js/myprofile.js"></script>

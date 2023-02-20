@@ -1,5 +1,7 @@
 
 
+const postAdded = document.querySelector('#postAdded');
+
 
 
 const newPostHandler = async (event) => {
@@ -29,8 +31,10 @@ const newPostHandler = async (event) => {
             });
 
             if (response.ok) {
-                document.location.replace('/profile');
-                alert("Post Created!");
+                postAdded.style.display = 'flex';
+                setTimeout(function () {
+                    document.location.replace('/profile');
+                }, 1500)
             } else {
                 alert(response.statusText);
             }

@@ -15,17 +15,17 @@ p {
   padding-left: 3vw;
   padding-right: 3vw;
 }
-/* hr{
-	
-} */
+hr{
+	margin: 0;
+}
 .profile-pic {
   border-radius: 50%;
 }
 
-/* .media { 
-   height: 200px;
-  overflow: hidden; 
- } */
+.columns {
+  margin: 0;
+ }
+
 
 form {
   margin: 0;
@@ -63,9 +63,22 @@ form {
   width: 50px;
 }
 
-#editbox {
+#editbox , #postUpdated  , #postDeleted , #ynDelete , #postAdded{
   display: none;
+  justify-content: center;
+  align-items: center;
+  position:fixed;
+  width: 100%;
+  height: 100%;
+ background-color: rgba(0,0,0,0.5);
+
 }
+
+#closeBtn:hover {
+  background-color: red;
+}
+
+
 
 @media screen and (max-width: 1025px) {
   .project {
