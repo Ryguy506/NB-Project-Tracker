@@ -5,36 +5,53 @@
   const editBoxClose = document.querySelector('#closebtn');
   const deleteBtn = document.querySelectorAll('.del')
   const saveBtn = document.querySelector('#saveBtn')
+const postUpdated = document.querySelector('#postUpdated')
+const postDeleted = document.querySelector('#postDeleted')
+const ynDelete = document.querySelector('#ynDelete')
+const yesBtn = document.querySelector('#yesBtn')
+const noBtn = document.querySelector('#noBtn')
 
-
-
+function hide(el) {
+    el.style.display = 'none';
+  }
+  
+  function show(el) {
+    el.style.display = 'flex';
+  }
   
 editBoxClose.addEventListener('click', function () {
-    // add style to editBox
-    editBox.style.display = 'none'
+    hide(editBox)
   });
+
 
 
   editBtn.forEach(function (button) {
     button.addEventListener('click', function (event) {
-   
-      editBox.style.display = 'flex'
-      editBox.style.justifyContent = 'center'
-      editBox.style.alignItems = 'center'
-      editBox.style.position = 'fixed'
-      editBox.style.width = '100%'
-      editBox.style.height = '100%'
-      editBox.style.backgroundColor = 'rgba(0,0,0,0.5)'
+      show(editBox)
       const ancestor = event.target.closest('[data-id-project]');
       const id = ancestor.dataset.idProject;
-     
-
+  
+      const title = event.target.closest('.card').querySelector('.title').innerText
+      const description = event.target.closest('.card').querySelector('.desc').innerText
+      const skills = event.target.closest('.card').querySelector('.skills').innerText
+      const email = event.target.closest('.card').querySelector('.email').innerText
+      const github_repo = event.target.closest('.card').querySelector('.repo').getAttribute('href')
+  
+      document.querySelector('#title').value = title
+      document.querySelector('#desc').value = description
+      document.querySelector('#skills').value = skills
+      document.querySelector('#email').value = email
+      document.querySelector('#repo').value = github_repo
+  
+  
+  
       saveBtn.addEventListener('click', function () {
+        hide(editBox)
         edit(id)
       }
       )
-     
-  })
+  
+    })
 
   })
 
@@ -58,8 +75,11 @@ editBoxClose.addEventListener('click', function () {
       })
 
       if (response.ok) {
-        alert("Post Updated!");
-        document.location.replace('/profile');
+       show(postUpdated)
+       setTimeout( function () {
+         document.location.replace('/profile');
+        }, 1500)
+      
       }
       else {
         alert(response.statusText);
@@ -82,25 +102,39 @@ deleteBtn.forEach(function (button) {
       const ancestor = event.target.closest('[data-id-project]');
       const id = ancestor.dataset.idProject;
       console.log(id)
-      const url = `api/user/delete/${id}`
-     const response = await fetch(url, {
-        method: 'DELETE'
-      })
-
-      if (response.ok) {
-        alert("Post Deleted!");
-        document.location.replace('/profile');
+      show(ynDelete)
+      yesBtn.addEventListener('click', function () {
+        hide(ynDelete)
+        deletePost(id)
       }
-      else {
-        alert(response.statusText);
+      )
+      noBtn.addEventListener('click', function () {
+        hide(ynDelete)
       }
-
+      )
 
     })
   
   })
 
 
+async function deletePost (id) {
+  const url = `api/user/delete/${id}`
+  const response = await fetch(url, {
+    method: 'DELETE'
+  })
+
+  if (response.ok) {
+    show(postDeleted)
+    setTimeout( function () {
+      document.location.replace('/profile');
+     }, 1500)
+  
+  }
+  else {
+    alert(response.statusText);
+  }
+}
 
 
 
