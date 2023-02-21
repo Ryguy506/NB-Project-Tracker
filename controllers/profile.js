@@ -24,4 +24,25 @@ if (!req.session.user) {
  }
 });
 
+
+router.get('/:user', async (req, res) => {
+  try {
+    const user = await User.findOne({ where: { github_id: req.params.user } });
+    if (!user) {
+     throw new Error;
+    } else {
+    const postsdata = await Project.findAll({ where: { github_repo: {[Op.like]: `%${req.params.user}%` } } });
+    const posts = postsdata.map((post) => post.get({ plain: true }));
+    const username = user.get({ plain: true });
+    console.log(username);
+    res.render('publicprofile', {
+      posts , username });
+  }
+    }
+    catch (err) {
+  res.sendStatus(404);
+    }
+}
+);
+
 module.exports = router;
